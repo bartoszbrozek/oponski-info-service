@@ -59,17 +59,6 @@
 </template>
 <script>
 export default {
-  name: "client-pages",
-  data() {
-    return {};
-  },
-  methods: {
-    login() {
-      this.$store.dispatch("user/retrieveToken", {
-        username: this.username,
-        password: this.password
-      });
-    }
-  }
+  name: "client-pages"
 };
 </script>

@@ -1,6 +1,7 @@
 <template>
   <div>
     Admin PAGES
+    <button @click="logout">Logout</button>
   </div>
 </template>
 <script>
@@ -12,11 +13,8 @@ export default {
     };
   },
   methods: {
-      login() {
-          this.$store.dispatch('user/retrieveToken', {
-              username: this.username,
-              password: this.password
-          })
+      logout() {
+          this.$store.dispatch('user/removeToken')
       }
   }
 };

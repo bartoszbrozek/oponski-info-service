@@ -5,19 +5,6 @@
 </template>
 <script>
 export default {
-  name: "admin-pages",
-  data() {
-    return {
-
-    };
-  },
-  methods: {
-      login() {
-          this.$store.dispatch('user/retrieveToken', {
-              username: this.username,
-              password: this.password
-          })
-      }
-  }
+  name: "admin-pages"
 };
 </script>

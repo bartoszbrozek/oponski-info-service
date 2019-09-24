@@ -1,5 +1,6 @@
 import axios from 'axios'
 import {
+    vm,
     toast
 } from '@/main'
 
@@ -30,20 +31,18 @@ const actions = {
             .then(response => {
                 let token = response.data.access_token
                 window.$cookies.set("token", token)
+                vm.$router.push('/admin')
 
                 toast.open({
                     duration: 5000,
                     message: "Logged In",
-                    position: 'is-bottom',
                     type: 'is-success'
                 })
             })
             .catch(error => {
-                console.log(error)
                 toast.open({
                     duration: 5000,
                     message: error.response.data.error_description,
-                    position: 'is-bottom',
                     type: 'is-danger'
                 })
             })
@@ -53,9 +52,8 @@ const actions = {
      * Logout user
      *
      * @param {*} context
-     * @param {*} credentials
      */
-    removeToken(context, credentials) {
+    removeToken(context) {
         if (!context.getters.isLoggedIn) {
             return
         }
@@ -63,9 +61,7 @@ const actions = {
         axios.defaults.headers.common['Authorization'] = 'Bearer ' + context.state.token
 
         axios.post('/logout')
-            .then(response => {
-                window.$cookies.remove("token")
-
+            .then(() => {
                 toast.open({
                     duration: 5000,
                     message: "Logged Out",
@@ -74,13 +70,16 @@ const actions = {
                 })
             })
             .catch(error => {
-                console.log(error)
                 toast.open({
                     duration: 5000,
                     message: error.response.data.error_description,
                     position: 'is-bottom',
                     type: 'is-danger'
                 })
+            })
+            .finally(() => {
+                vm.$router.push('/admin/login')
+                window.$cookies.remove("token")
             })
     }
 }

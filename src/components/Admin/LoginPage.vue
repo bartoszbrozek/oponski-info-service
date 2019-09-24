@@ -7,7 +7,7 @@
       </b-field>
 
       <b-field label="Password">
-        <b-input type="password" password-reveal required  v-model="password"></b-input>
+        <b-input type="password" password-reveal required v-model="password"></b-input>
       </b-field>
 
       <b-button type="is-info" @click="login">Login</b-button>

@@ -41,6 +41,7 @@ const routes = [
     component: AdminPages,
     children: [{
         path: "",
+        name: "adminDashboard",
         components: {
           adminView: AdminDashboard,
         },
@@ -70,7 +71,6 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
     if (!store.getters["user/isLoggedIn"]) {
-      console.log("NOT LOGGED IN", store.getters.loggedIn)
       next({
         name: 'adminLogin',
       })
