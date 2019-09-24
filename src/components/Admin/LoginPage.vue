@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <h1 class="title">Login to Admin Panel</h1>
     <section>
       <b-field label="Username" type="is-success">
         <b-input maxlength="30" required v-model="username"></b-input>
