@@ -24,12 +24,18 @@ export default {
     };
   },
   methods: {
-      login() {
-          this.$store.dispatch('user/retrieveToken', {
-              username: this.username,
-              password: this.password
-          })
-      }
+    login() {
+      var self = this;
+      this.$store
+        .dispatch("user/retrieveToken", {
+          username: this.username,
+          password: this.password
+        })
+        .then(data => {
+          self.$store.getters["user/isLoggedIn"];
+          self.$router.push("/admin/");
+        });
+    }
   }
 };
 </script>

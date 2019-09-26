@@ -40,23 +40,20 @@ const routes = [
     path: "/admin",
     component: AdminPages,
     children: [{
-        path: "",
-        name: "adminDashboard",
-        components: {
-          adminView: AdminDashboard,
-        },
-        meta: {
-          requiresAuth: true,
-        },
+      path: "",
+      name: "adminDashboard",
+      components: {
+        adminView: AdminDashboard,
       },
-      {
-        path: "login",
-        name: "adminLogin",
-        components: {
-          adminView: AdminLoginPage,
-        },
-      }
-    ]
+      meta: {
+        requiresAuth: true,
+      },
+    }]
+  },
+  {
+    path: "/admin/login",
+    name: "adminLogin",
+    component: AdminLoginPage
   }
 ]
 

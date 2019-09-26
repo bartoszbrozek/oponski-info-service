@@ -23,15 +23,14 @@ const actions = {
      * @param {*} context
      * @param {*} credentials
      */
-    retrieveToken(context, credentials) {
-        axios.post('/login', {
+    async retrieveToken(context, credentials) {
+        await axios.post('/login', {
                 username: credentials.username,
                 password: credentials.password,
             })
             .then(response => {
                 let token = response.data.access_token
-                window.$cookies.set("token", token)
-                vm.$router.push('/admin')
+                context.commit("setToken", token)
 
                 toast.open({
                     duration: 5000,
@@ -59,33 +58,39 @@ const actions = {
         }
 
         axios.defaults.headers.common['Authorization'] = 'Bearer ' + context.state.token
+        context.commit("clearToken")
 
         axios.post('/logout')
             .then(() => {
                 toast.open({
                     duration: 5000,
                     message: "Logged Out",
-                    position: 'is-bottom',
                     type: 'is-success'
                 })
             })
             .catch(error => {
+                if (typeof error.response.data.error_description === "undefined") {
+                    error.response.data.error_description = "Unknown error"
+                }
+
                 toast.open({
                     duration: 5000,
                     message: error.response.data.error_description,
-                    position: 'is-bottom',
                     type: 'is-danger'
                 })
-            })
-            .finally(() => {
-                vm.$router.push('/admin/login')
-                window.$cookies.remove("token")
             })
     }
 }
 
 const mutations = {
-
+    setToken(state, token) {
+        state.token = token
+        window.$cookies.set("token", token)
+    },
+    clearToken(state) {
+        state.token = null
+        window.$cookies.remove("token")
+    }
 }
 
 export default {

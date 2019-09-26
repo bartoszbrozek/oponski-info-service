@@ -1,7 +1,6 @@
 <template>
   <div>
-    Admin PAGES
-    <button @click="logout">Logout</button>
+    Hey! This is our dashboard
   </div>
 </template>
 <script>
@@ -12,10 +11,5 @@ export default {
 
     };
   },
-  methods: {
-      logout() {
-          this.$store.dispatch('user/removeToken')
-      }
-  }
 };
 </script>
