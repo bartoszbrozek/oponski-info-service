@@ -6,6 +6,13 @@ import ClientPages from './components/Client/ClientPages'
 import AdminLoginPage from './components/Admin/LoginPage'
 import AdminDashboard from './components/Admin/AdminDashboard'
 import AdminPages from './components/Admin/AdminPages'
+import AdminPageNews from './components/Admin/Pages/News/News'
+
+import '@fortawesome/fontawesome/styles.css';
+import fontawesome from '@fortawesome/fontawesome';
+import { faEdit } from '@fortawesome/fontawesome-free-solid';
+fontawesome.library.add(faEdit);
+
 import VueRouter from 'vue-router'
 import Buefy from 'buefy'
 import 'buefy/dist/buefy.css'
@@ -13,7 +20,9 @@ import store from './store'
 
 Vue.config.productionTip = false
 Vue.use(VueRouter)
-Vue.use(Buefy)
+Vue.use(Buefy, {
+  defaultIconPack: 'fas',
+});
 Vue.use(VueCookies)
 VueCookies.config('7d')
 
@@ -39,16 +48,24 @@ const routes = [
   {
     path: "/admin",
     component: AdminPages,
+    meta: {
+      requiresAuth: true,
+    },
     children: [{
-      path: "",
-      name: "adminDashboard",
-      components: {
-        adminView: AdminDashboard,
+        path: "",
+        name: "adminDashboard",
+        components: {
+          adminView: AdminDashboard,
+        }
       },
-      meta: {
-        requiresAuth: true,
-      },
-    }]
+      {
+        path: "news",
+        name: "adminNews",
+        components: {
+          adminView: AdminPageNews
+        }
+      }
+    ]
   },
   {
     path: "/admin/login",

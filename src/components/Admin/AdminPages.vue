@@ -28,7 +28,8 @@
           <!-- MENU -->
           <b-menu>
             <b-menu-list label="Menu">
-              <b-menu-item label="News"></b-menu-item>
+              <b-menu-item label="Dashboard" tag="router-link" :to="{ path: '/admin' }"></b-menu-item>
+              <b-menu-item label="News" tag="router-link" :to="{ path: '/admin/news' }"></b-menu-item>
             </b-menu-list>
             <b-menu-list label="Actions">
               <b-menu-item label="Logout" @click="logout"></b-menu-item>
