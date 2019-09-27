@@ -4,7 +4,7 @@
       <b-select v-model="perPage" :disabled="!isPaginated">
         <option value="5">5 per page</option>
         <option value="10">10 per page</option>
-        <option value="20">15 per page</option>
+        <option value="20">20 per page</option>
         <option value="100">100 per page</option>
       </b-select>
     </b-field>
@@ -19,7 +19,7 @@
       :default-sort-direction="defaultSortDirection"
       :sort-icon="sortIcon"
       :sort-icon-size="sortIconSize"
-      default-sort="user.first_name"
+      default-sort="id"
       aria-next-label="Next page"
       aria-previous-label="Previous page"
       aria-page-label="Page"
@@ -28,17 +28,11 @@
       <template slot-scope="props">
         <b-table-column field="id" label="ID" width="40" sortable numeric>{{ props.row.id }}</b-table-column>
 
-        <b-table-column
-          field="user.first_name"
-          label="Title"
-          sortable
-        >{{ props.row.title }}</b-table-column>
+        <b-table-column field="title" label="Title" sortable>{{ props.row.title }}</b-table-column>
 
-        <b-table-column
-          field="user.last_name"
-          label="Category"
-          sortable
-        >{{ props.row.category.name }}</b-table-column>
+        <b-table-column field="category" label="Category" sortable>{{ props.row.category.name }}</b-table-column>
+
+        <b-table-column field="user.name" label="Created By" sortable>{{ props.row.user.name }}</b-table-column>
 
         <b-table-column field="created_at" label="Created At" sortable centered>
           <span class="tag is-success">{{ new Date(props.row.created_at).toLocaleDateString() }}</span>
@@ -47,7 +41,6 @@
         <b-table-column field="updated_at" label="Updated At" sortable centered>
           <span class="tag is-success">{{ new Date(props.row.updated_at).toLocaleDateString() }}</span>
         </b-table-column>
-
       </template>
     </b-table>
   </section>
@@ -69,7 +62,7 @@ export default {
     };
   },
   created: function() {
-      this.$store.dispatch("news/getAll")
+    this.$store.dispatch("news/getAll");
   },
   computed: mapGetters({
     news: "news/news"

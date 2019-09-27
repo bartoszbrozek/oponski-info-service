@@ -1,0 +1,13 @@
+Article
+ - id
+ - title
+ - content
+ - created_at
+ - uid
+ - updated_at
+ - category_id
+
+ArticleCategory
+ - id
+ - name
+

@@ -41,7 +41,6 @@
 
     <div class="container">
       <div class="is-centered">
-        Render CLIENT pages t
         <router-view name="clientView"></router-view>
       </div>
     </div>

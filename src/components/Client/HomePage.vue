@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2 class="subtitle">Wiadomości</h2>
+    <h1 class="title">Wiadomości</h1>
 
     <NewsPage/>
   </div>

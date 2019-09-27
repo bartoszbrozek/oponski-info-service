@@ -7,6 +7,7 @@ import AdminLoginPage from './components/Admin/LoginPage'
 import AdminDashboard from './components/Admin/AdminDashboard'
 import AdminPages from './components/Admin/AdminPages'
 import AdminPageNews from './components/Admin/Pages/News/News'
+import AdminPageAddNews from './components/Admin/Pages/News/AddNews'
 
 import '@fortawesome/fontawesome/styles.css';
 import fontawesome from '@fortawesome/fontawesome';
@@ -63,6 +64,13 @@ const routes = [
         name: "adminNews",
         components: {
           adminView: AdminPageNews
+        }
+      },
+      {
+        path: "news/add",
+        name: "adminAddNews",
+        components: {
+          adminView: AdminPageAddNews
         }
       }
     ]
