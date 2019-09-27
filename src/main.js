@@ -8,6 +8,8 @@ import AdminDashboard from './components/Admin/AdminDashboard'
 import AdminPages from './components/Admin/AdminPages'
 import AdminPageNews from './components/Admin/Pages/News/News'
 import AdminPageAddNews from './components/Admin/Pages/News/AddNews'
+import AdminPageCategories from './components/Admin/Pages/News/Categories'
+import AdminPageAddCategories from './components/Admin/Pages/News/AddCategories'
 
 import '@fortawesome/fontawesome/styles.css';
 import fontawesome from '@fortawesome/fontawesome';
@@ -71,6 +73,20 @@ const routes = [
         name: "adminAddNews",
         components: {
           adminView: AdminPageAddNews
+        }
+      },
+      {
+        path: "categories",
+        name: "adminCategories",
+        components: {
+          adminView: AdminPageCategories
+        }
+      },
+      {
+        path: "categories/add",
+        name: "adminAddCategories",
+        components: {
+          adminView: AdminPageAddCategories
         }
       }
     ]
